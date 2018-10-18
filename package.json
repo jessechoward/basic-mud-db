@@ -1,0 +1,27 @@
+{
+  "name": "basic-mud-db",
+  "version": "1.0.0",
+  "description": "Data store backend for basic-mud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "git+https://github.com/jessechoward/basic-mud-db.git",
+  "keywords": [],
+  "author": "Jesse Howard <jessechoward@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessechoward/basic-mud-db/issues"
+  },
+  "homepage": "https://github.com/jessechoward/basic-mud-db#readme",
+  "dependencies": {
+    "bcrypt": "^3.0.2",
+    "dot-env": "^0.0.1",
+    "jsonwebtoken": "^8.3.0",
+    "sequelize": "^4.39.1",
+    "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.7.0"
+  }
+}
