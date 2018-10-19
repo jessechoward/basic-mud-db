@@ -15,5 +15,6 @@ exports.hash = (pasword) =>
 
 exports.verify = (password, hash) =>
 {
-	return bcrypt.compare(password, hash);
+	if (!password || !hash) return false;
+	return bcrypt.compareSync(password, hash);
 }
