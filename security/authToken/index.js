@@ -15,7 +15,6 @@ const keysExist = () =>
 
 const genRandomKey = () =>
 {
-	console.log('Generating random secret. All tokens will be invalidated on reboot.');
 	// generate 256 bits (32 bytes) of randomness
 	// the resulting hex string (2 characters per byte)
 	// is actually 512 bits. This exceeds the HS256 requirement of 256 bits
@@ -120,7 +119,6 @@ exports.revoke = (decoded, cb) =>
 	if (!decoded.jti || !decoded.exp) return;
 	if (blacklist[decoded.jti]) return;
 
-	console.log(`Revoking token ${decoded.jti}`);
 	blacklist[decoded.jti] = decoded.exp;
 	if (cb) cb(decoded);
 };
@@ -144,4 +142,4 @@ const pruneBlackList = () =>
 	}
 };
 // setup a recurring prune operation
-setInterval(pruneBlackList, blackListPruning);
+setInterval(pruneBlackList, pruneInterval);

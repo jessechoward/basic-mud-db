@@ -1,4 +1,5 @@
 const security = require('../security');
+const uuid = require('uuid/v4');
 
 module.exports = (sequelize, DataTypes) =>
 {
@@ -8,6 +9,7 @@ module.exports = (sequelize, DataTypes) =>
 		{
 			type: DataTypes.STRING,
 			validate: {isUUID: 4},
+			defaultValue: () => {return uuid();},
 			primaryKey: true
 		},
 		email:
@@ -26,19 +28,18 @@ module.exports = (sequelize, DataTypes) =>
 		forceChange:
 		{
 			type: DataTypes.BOOLEAN,
-			default: false
+			defaultValue: false
 		},
 		enabled:
 		{
 			type: DataTypes.BOOLEAN,
-			default: true,
-			allowNull: false
+			defaultValue: true
 		},
 		locked:
 		{
 			type: DataTypes.STRING,
 			allowNull: true,
-			default: null
+			defaultValue: null
 		}
 	},
 	{
@@ -49,7 +50,10 @@ module.exports = (sequelize, DataTypes) =>
 			beforeCreate: (identity, options) =>
 			{
 				return security.hashPassword(identity.password)
-					.then((hash) => {identity.password = hash;});
+					.then((hash) =>
+					{
+						identity.password = hash;
+					});
 			}
 		}
 	});
@@ -78,6 +82,9 @@ module.exports = (sequelize, DataTypes) =>
 					email: identity.email,
 					enabled: identity.enabled,
 					locked: identity.locked,
+					forceChange: identity.forceChange,
+					createdAt: identity.createdAt,
+					updatedAt: identity.updatedAt,
 					authenticated: (identity.enabled && !identity.locked && identity.verify(password))
 				};
 			}
@@ -92,8 +99,8 @@ module.exports = (sequelize, DataTypes) =>
 	{
 		// set identityId on Player instances to the owning Identity
 		// adds getPlayers and setPlayers to Identity instances
-		Identity.hasMany(db.Player, {as: 'Players', foreignKey: 'identityId', });
+		Identity.hasMany(db.models.players, {as: 'Players', foreignKey: 'identityId', });
 	};
 
-	return identity;
+	return Identity;
 };
