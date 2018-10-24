@@ -4,7 +4,8 @@
   "description": "Data store backend for basic-mud",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "node_modules/eslint/bin/eslint.js --color **/*.js",
+    "test": "node ./test/unit-tests.js"
   },
   "repository": "git+https://github.com/jessechoward/basic-mud-db.git",
   "keywords": [],
@@ -23,6 +24,7 @@
   "devDependencies": {
     "dotenv": "^6.1.0",
     "eslint": "^5.7.0",
+    "eslint-config-google": "^0.11.0",
     "sqlite3": "^4.0.2",
     "tape": "^4.9.1"
   }
