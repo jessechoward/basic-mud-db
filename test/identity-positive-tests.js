@@ -42,7 +42,7 @@ tape('initialize database', (assert) =>
 				{
 					assert.notOk(result.password, 'Verified Identity does not return password or hash');
 					const keys = Object.keys(result);
-					for (let key of ['id', 'enabled', 'locked', 'forceChange', 'createdAt', 'updatedAt', 'authenticated'])
+					for (const key of ['id', 'enabled', 'locked', 'forceChange', 'createdAt', 'updatedAt', 'authenticated'])
 					{
 						assert.ok(keys.includes(key), `Verified Identity has property ${key}`);
 					}

@@ -7,8 +7,23 @@
     },
     "rules":{
         "no-tabs": "off",
-        "brace-style": ["warn", "allman"],
+        "brace-style": ["warn", "allman", {"allowSingleLine": true}],
         "indent": "off",
-        "eol-last": "off"
+        "eol-last": "off",
+        "comma-dangle": "off",
+        "space-before-function-paren": ["error", {
+            "anonymous": "always",
+            "named": "never",
+            "asyncArrow": "always"
+        }],
+        "max-len": ["warn", {
+            "code": 120,
+            "comments": 120,
+            "ignoreStrings": true,
+            "ignoreUrls": true,
+            "ignoreTemplateLiterals": true,
+            "ignoreRegExpLiterals": true
+          }
+        ]
     }
 }

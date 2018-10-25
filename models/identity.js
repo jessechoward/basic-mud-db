@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) =>
 	{
 		if (!password) return false;
 		return security.verifyPassword(password, this.password);
-	}
+	};
 
 	Identity.login = (email, password) =>
 	{
@@ -91,7 +91,7 @@ module.exports = (sequelize, DataTypes) =>
 			else
 			{
 				return {error: 'not found'};
-			}			
+			}
 		});
 	};
 
@@ -99,7 +99,7 @@ module.exports = (sequelize, DataTypes) =>
 	{
 		// set identityId on Player instances to the owning Identity
 		// adds getPlayers and setPlayers to Identity instances
-		Identity.hasMany(db.models.players, {as: 'Players', foreignKey: 'identityId', });
+		Identity.hasMany(db.models.players, {as: 'Players', foreignKey: 'identityId'});
 	};
 
 	return Identity;

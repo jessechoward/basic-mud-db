@@ -2,7 +2,7 @@ const uuid = require('uuid/v4');
 
 module.exports = (sequelize, DataTypes) =>
 {
-	const Player = sequelize.define('player',
+	const Exit = sequelize.define('exit',
 	{
 		id:
 		{
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) =>
 			defaultValue: () => {return uuid();},
 			primaryKey: true
 		},
-		identityId:
+		areaId:
 		{
 			type: DataTypes.STRING,
 			allowNull: false
@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) =>
 		timeStamps: true
 	});
 
-	Player.associate = (db) =>
+	Exit.associate = (db) =>
 	{
 		// associations
 	};
 
-	return Player;
+	return Exit;
 };

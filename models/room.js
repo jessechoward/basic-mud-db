@@ -2,7 +2,7 @@ const uuid = require('uuid/v4');
 
 module.exports = (sequelize, DataTypes) =>
 {
-	const Player = sequelize.define('player',
+	const Room = sequelize.define('room',
 	{
 		id:
 		{
@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) =>
 			defaultValue: () => {return uuid();},
 			primaryKey: true
 		},
-		identityId:
+		areaId:
 		{
 			type: DataTypes.STRING,
 			allowNull: false
@@ -26,10 +26,12 @@ module.exports = (sequelize, DataTypes) =>
 		timeStamps: true
 	});
 
-	Player.associate = (db) =>
+	Room.associate = (db) =>
 	{
 		// associations
+		// exits - these are associated with a room scope
+		Room.hasMany(db.models.exits, {as: 'Exits', foreignKey: 'roomId'});
 	};
 
-	return Player;
+	return Room;
 };
